@@ -38,7 +38,7 @@ The form includes:
 
 Update these before final production launch:
 
-- WhatsApp link in `index.html` currently uses `923000000000` as a placeholder number.
+- WhatsApp button currently opens WhatsApp with a prefilled project inquiry message. Add a phone number later if a direct WhatsApp business number is available.
 - GitHub link in `index.html` currently uses `https://github.com/your-github-username`.
 - LinkedIn link in `index.html` currently uses `https://www.linkedin.com/in/your-linkedin-profile`.
 - Canonical, Open Graph URL, `robots.txt`, and `sitemap.xml` should be updated if the final domain is not `https://saqlyn.com/`.
