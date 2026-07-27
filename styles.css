@@ -136,21 +136,21 @@ button, input, textarea, select { font: inherit; }
 .hero-stats strong { display: block; color: var(--text); font-size: 1.5rem; }
 .hero-card { position: relative; min-height: 470px; display: grid; place-items: center; }
 .profile-card { position: relative; z-index: 1; padding: 2rem; border-radius: var(--radius); text-align: center; }
-.profile-image {
-  width: min(260px, 72vw);
-  aspect-ratio: 1;
-  margin: 0 auto 1.35rem;
-  border-radius: 38px;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(135deg, rgba(56,189,248,0.22), rgba(167,139,250,0.24)),
-    repeating-linear-gradient(135deg, rgba(255,255,255,0.08) 0 10px, transparent 10px 20px);
-  border: 1px solid color-mix(in srgb, var(--brand) 38%, var(--line));
-  box-shadow: inset 0 0 60px rgba(255,255,255,0.08), 0 24px 60px rgba(0,0,0,0.22);
+.profile-image{
+    width:min(260px,72vw);
+    aspect-ratio:1;
+    margin:0 auto 1.35rem;
+    border-radius:38px;
+    overflow:hidden;
+    border:1px solid color-mix(in srgb,var(--brand) 38%,var(--line));
+    box-shadow:inset 0 0 60px rgba(255,255,255,.08),0 24px 60px rgba(0,0,0,.22);
 }
-.profile-image span { display: block; font-size: clamp(3rem, 9vw, 5.2rem); font-weight: 1000; line-height: 1; }
-.profile-image small { color: var(--muted); font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
+.profile-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
 .card-tags, .skill-cloud { display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center; }
 .card-tags span, .skill-cloud span { border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 0.55rem 0.8rem; color: var(--muted); font-weight: 850; font-size: 0.88rem; }
 .profile-orbit { position: absolute; inset: 0; animation: float 5s ease-in-out infinite; }
