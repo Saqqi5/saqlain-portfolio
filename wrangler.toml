@@ -5,6 +5,7 @@
 # (which forwards the contact form to the n8n leads webhook).
 name = "saqlain-portfolio"
 compatibility_date = "2025-11-01"
+main = "_worker.js"
 
 [assets]
 directory = "./"
