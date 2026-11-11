@@ -8,14 +8,15 @@
 // runs server-side on the same HTTPS origin and forwards the POST to n8n,
 // so the browser only ever talks to this site.
 //
-// n8n webhook: http://161.153.68.55:5678/webhook/saqlyn-lead
-//   - expects a POST with the form fields (Full Name, Email Address,
-//     Phone Number, Service Required, Message); responds 200 immediately.
-//
-// /api/diag (temporary): tests whether the Worker can reach the VM and
-// the public internet, to diagnose a hanging /api/lead.
-const N8N_WEBHOOK = 'http://161.153.68.55:5678/webhook/saqlyn-lead';
-const N8N_HOME = 'http://161.153.68.55:5678/';
+// n8n webhook via Cloudflare Quick Tunnel (trycloudflare.com).
+// Cloudflare's edge blocks direct fetch to the VM's raw IP:5678 (403),
+// so n8n is reached through this tunnel URL instead. The tunnel is a
+// `cloudflared tunnel --url http://localhost:5678` process on micro-1.
+// NOTE: a Quick Tunnel URL is random and changes if cloudflared restarts
+// — if the form ever stops working, check the current URL in
+// /tmp/cloudflared-quick.log on micro-1 and update it here.
+const N8N_WEBHOOK = 'https://exit-boating-searched-grants.trycloudflare.com/webhook/saqlyn-lead';
+const N8N_HOME = 'https://exit-boating-searched-grants.trycloudflare.com/';
 
 async function probe(url, ms) {
   const t0 = Date.now();
