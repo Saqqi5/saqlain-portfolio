@@ -11,11 +11,36 @@
 // n8n webhook: http://161.153.68.55:5678/webhook/saqlyn-lead
 //   - expects a POST with the form fields (Full Name, Email Address,
 //     Phone Number, Service Required, Message); responds 200 immediately.
+//
+// /api/diag (temporary): tests whether the Worker can reach the VM and
+// the public internet, to diagnose a hanging /api/lead.
 const N8N_WEBHOOK = 'http://161.153.68.55:5678/webhook/saqlyn-lead';
+const N8N_HOME = 'http://161.153.68.55:5678/';
+
+async function probe(url, ms) {
+  const t0 = Date.now();
+  try {
+    const r = await fetch(url, { signal: AbortSignal.timeout(ms) });
+    return { url, ok: r.ok, status: r.status, ms: Date.now() - t0 };
+  } catch (e) {
+    return { url, ok: false, error: String(e && e.name ? e.name : e), ms: Date.now() - t0 };
+  }
+}
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    if (url.pathname === '/api/diag' && request.method === 'GET') {
+      const [vm, net] = await Promise.all([
+        probe(N8N_HOME, 8000),
+        probe('https://example.com/', 8000),
+      ]);
+      return new Response(JSON.stringify({ vm, net }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     if (url.pathname === '/api/lead' && request.method === 'POST') {
       try {
@@ -27,6 +52,7 @@ export default {
               'application/x-www-form-urlencoded',
           },
           body: await request.arrayBuffer(),
+          signal: AbortSignal.timeout(8000),
         });
         if (!res.ok) throw new Error('n8n webhook returned ' + res.status);
         return new Response(JSON.stringify({ ok: true }), {
@@ -35,7 +61,7 @@ export default {
         });
       } catch (err) {
         return new Response(
-          JSON.stringify({ ok: false, error: 'Lead could not be sent' }),
+          JSON.stringify({ ok: false, error: String(err && err.name ? err.name : err) }),
           {
             status: 502,
             headers: { 'Content-Type': 'application/json' },
