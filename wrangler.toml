@@ -1,0 +1,11 @@
+# Saqlyn portfolio — Cloudflare Worker (Static Assets + _worker.js).
+# This file lets Cloudflare deploy the site straight from GitHub:
+# every push to main auto-deploys. It also tells Cloudflare that the
+# site's files are the repo root and the Worker entrypoint is _worker.js
+# (which forwards the contact form to the n8n leads webhook).
+name = "saqlain-portfolio"
+compatibility_date = "2025-11-01"
+
+[assets]
+directory = "./"
+binding = "ASSETS"
