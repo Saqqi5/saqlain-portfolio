@@ -123,7 +123,7 @@ button, input, textarea, select { font: inherit; }
 .btn:hover, .btn:focus-visible { transform: translateY(-3px); border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); }
 .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; border: 0; box-shadow: 0 16px 40px rgba(56, 189, 248, 0.22); }
 .btn.secondary { background: var(--glass); color: var(--text); }
-.btn.whatsapp { background: linear-gradient(135deg, #16a34a, #22c55e); color: #fff; border: 0; }
+.btn.telegram { background: linear-gradient(135deg, #0088cc, #229ED9); color: #fff; border: 0; }
 .hero-stats, .achievement-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; }
 .hero-stats { grid-template-columns: repeat(3, 1fr); max-width: 700px; }
 .hero-stats span, .achievement-card, .glass-card, .skill-category, .testimonial-card, .lead-form {
