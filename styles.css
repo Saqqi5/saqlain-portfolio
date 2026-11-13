@@ -302,3 +302,14 @@ input.invalid, textarea.invalid, select.invalid { border-color: var(--danger); }
 @media (max-width: 980px) {
   .pricing-grid { grid-template-columns: 1fr; }
 }
+
+/* About */
+.about-highlights { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
+.about-highlights span { border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 0.55rem 0.85rem; color: var(--muted); font-weight: 850; font-size: 0.88rem; }
+.about-copy h3 { margin: 1.4rem 0 0.7rem; font-size: 1.05rem; }
+.about-copy p a { color: var(--brand); font-weight: 800; }
+.about-what { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.about-what a { border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 0.55rem 0.85rem; color: var(--text); font-weight: 850; font-size: 0.88rem; }
+.about-what a:hover { border-color: var(--brand); }
+.about-connect { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 1.4rem; color: var(--muted); }
+.about-connect a { color: var(--brand); font-weight: 900; }
