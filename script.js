@@ -60,17 +60,19 @@ window.addEventListener('scroll', () => {
   backToTop.classList.toggle('visible', window.scrollY > 500);
 }, { passive: true });
 
-copyEmailButton.addEventListener('click', async () => {
-  const email = copyEmailButton.dataset.email;
-  copyStatus.classList.remove('error');
-  try {
-    await navigator.clipboard.writeText(email);
-    copyStatus.textContent = 'Email copied: ' + email;
-  } catch (error) {
-    copyStatus.textContent = 'Copy failed. Please use: ' + email;
-    copyStatus.classList.add('error');
-  }
-});
+if (copyEmailButton && copyStatus) {
+  copyEmailButton.addEventListener('click', async () => {
+    const email = copyEmailButton.dataset.email;
+    copyStatus.classList.remove('error');
+    try {
+      await navigator.clipboard.writeText(email);
+      copyStatus.textContent = 'Email copied: ' + email;
+    } catch (error) {
+      copyStatus.textContent = 'Copy failed. Please use: ' + email;
+      copyStatus.classList.add('error');
+    }
+  });
+}
 
 leadForm.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -116,7 +118,7 @@ leadForm.addEventListener('submit', async (event) => {
     fields.forEach((field) => field.classList.remove('invalid'));
     formStatus.textContent = 'Thank you. Your inquiry has been sent successfully.';
   } catch (error) {
-    formStatus.textContent = 'Something went wrong. Please email saqlainmushtaq555@gmail.com directly.';
+    formStatus.textContent = 'Something went wrong. Please contact me on Telegram (@SAQLYNDIGITAL) instead.';
     formStatus.classList.add('error');
   } finally {
     submitButton.disabled = false;
