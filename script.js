@@ -125,3 +125,20 @@ leadForm.addEventListener('submit', async (event) => {
     submitButton.textContent = 'Send Project Inquiry';
   }
 });
+
+// Portfolio slideshows: crossfade through real thumbnails / screenshots.
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.slideshow').forEach((show) => {
+    const slides = show.querySelectorAll('.slide');
+    if (slides.length < 2) return;
+    let current = 0;
+    let timer = setInterval(next, 3500);
+    function next() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }
+    show.addEventListener('mouseenter', () => clearInterval(timer));
+    show.addEventListener('mouseleave', () => { clearInterval(timer); timer = setInterval(next, 3500); });
+  });
+}
